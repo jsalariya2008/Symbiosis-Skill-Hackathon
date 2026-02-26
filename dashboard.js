@@ -94,3 +94,40 @@ function loadRecentScans() {
         }
     ];
     
+const tableBody = document.getElementById('recentScans');
+    if (!tableBody) return;
+    
+    tableBody.innerHTML = scans.map(scan => `
+        <tr>
+            <td><strong>${scan.project}</strong></td>
+            <td>${formatDate(scan.date)}</td>
+            <td>${scan.files}</td>
+            <td class="risk-score-cell ${getRiskClass(scan.riskScore)}">${scan.riskScore}/100</td>
+            <td><span class="status-badge ${scan.status}">${scan.status}</span></td>
+            <td>
+                <button class="btn btn-secondary btn-small" onclick="viewScanDetails('${scan.project}')">
+                    View Details
+                </button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffTime = Math.abs(now - date);
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays === 0) return 'Today';
+    if (diffDays === 1) return 'Yesterday';
+    if (diffDays < 7) return `${diffDays} days ago`;
+    
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function getRiskClass(score) {
+    if (score >= 70) return 'risk-high';
+    if (score >= 40) return 'risk-medium';
+    return 'risk-low';
+}
