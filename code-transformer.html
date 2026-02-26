@@ -38,3 +38,37 @@
                 <h3>🔧 Templates</h3>
                 <button class="btn-icon" onclick="toggleSidebar()">≡</button>
             </div>
+ 
+            <div class="template-search">
+                <input type="text" placeholder="Search templates..." id="templateSearch" oninput="filterTemplates()">
+            </div>
+
+            <div class="template-categories">
+                <div class="category active" data-category="all">
+                    <span class="category-icon">📚</span>
+                    <span>All Templates</span>
+                    <span class="category-count">12</span>
+                </div>
+                <div class="category" data-category="java">
+                    <span class="category-icon">☕</span>
+                    <span>Java</span>
+                    <span class="category-count">4</span>
+                </div>
+                <div class="category" data-category="python">
+                    <span class="category-icon">🐍</span>
+                    <span>Python</span>
+                    <span class="category-count">3</span>
+                </div>
+                <div class="category" data-category="cpp">
+                    <span class="category-icon">⚙️</span>
+                    <span>C/C++</span>
+                    <span class="category-count">3</span>
+                </div>
+                <div class="category" data-category="javascript">
+                    <span class="category-icon">📜</span>
+                    <span>JavaScript</span>
+                    <span class="category-count">2</span>
+                </div>
+            </div>
+
+            <div class="template-list" id="templateList">
