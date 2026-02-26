@@ -6,14 +6,17 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = 'login.html';
         return;
     }
+    
     // Display user info
     displayUserInfo(user);
+    
     // Load dashboard data
     loadDashboardData();
     
     // Setup event listeners
     setupDashboardListeners();
 });
+
 // ===== DISPLAY USER INFO =====
 function displayUserInfo(user) {
     // Update user avatar
@@ -21,12 +24,14 @@ function displayUserInfo(user) {
     if (userAvatar) {
         userAvatar.textContent = user.avatar || user.name.charAt(0).toUpperCase();
     }
+    
     // Update user name
     const userName = document.querySelector('.user-name');
     if (userName) {
         userName.textContent = user.name;
     }
- // Update welcome message
+    
+    // Update welcome message
     const welcomeMessage = document.querySelector('.welcome-content h1');
     if (welcomeMessage) {
         welcomeMessage.textContent = `Welcome back, ${user.name.split(' ')[0]}! 👋`;
@@ -54,6 +59,7 @@ function loadStats() {
         fixedIssues: 89,
         securityScore: 72
     };
+    
     // Update stat cards (if elements exist)
     const statsElements = {
         totalScans: document.querySelector('.stats-grid .stat-card:nth-child(1) .stat-value'),
@@ -94,7 +100,7 @@ function loadRecentScans() {
         }
     ];
     
-const tableBody = document.getElementById('recentScans');
+    const tableBody = document.getElementById('recentScans');
     if (!tableBody) return;
     
     tableBody.innerHTML = scans.map(scan => `
@@ -131,6 +137,7 @@ function getRiskClass(score) {
     if (score >= 40) return 'risk-medium';
     return 'risk-low';
 }
+
 function viewScanDetails(project) {
     // Redirect to results page or show modal
     alert(`View details for ${project} - Feature coming soon!`);
@@ -172,3 +179,39 @@ function loadRiskChart() {
         ctx.font = 'bold 16px Arial';
         ctx.textAlign = 'center';
         ctx.fillText(value, x + barWidth / 2, y - 10);
+        
+        // Draw label
+        ctx.font = '14px Arial';
+        ctx.fillText(data.labels[i], x + barWidth / 2, canvas.height - 20);
+    });
+}
+
+// ===== EVENT LISTENERS =====
+function setupDashboardListeners() {
+    // User menu toggle
+    const userMenu = document.querySelector('.user-menu');
+    if (userMenu) {
+        userMenu.addEventListener('click', toggleUserMenu);
+    }
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        const dropdown = document.getElementById('userDropdown');
+        const userMenu = document.querySelector('.user-menu');
+        
+        if (dropdown && !userMenu.contains(event.target)) {
+            dropdown.classList.remove('show');
+        }
+    });
+}
+
+function toggleUserMenu() {
+    const dropdown = document.getElementById('userDropdown');
+    if (dropdown) {
+        dropdown.classList.toggle('show');
+    }
+}
+
+// ===== EXPORT FUNCTIONS =====
+window.toggleUserMenu = toggleUserMenu;
+window.viewScanDetails = viewScanDetails;
