@@ -287,3 +287,37 @@
     font-weight: 600;
     font-size: 0.95rem;
 }
+.view-all:hover {
+    text-decoration: underline;
+}
+
+/* ===== TABLE ===== */
+.scans-table {
+    overflow-x: auto;
+}
+
+.scans-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.scans-table th {
+    text-align: left;
+    padding: 15px;
+    background: var(--bg-light);
+    color: var(--gray);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.scans-table td {
+    padding: 15px;
+    border-bottom: 1px solid #f8f9fa;
+    color: var(--dark);
+}
+
+.scans-table tr:hover {
+    background: var(--bg-light);
+}
