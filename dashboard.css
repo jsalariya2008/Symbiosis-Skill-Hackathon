@@ -1,0 +1,50 @@
+/* ===== DASHBOARD LAYOUT ===== */
+.dashboard-page {
+    background: #f5f7fa;
+    min-height: 100vh;
+}
+
+/* ===== DASHBOARD NAVIGATION ===== */
+.dashboard-nav {
+    background: white;
+    border-bottom: 2px solid #e9ecef;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-nav .nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-nav .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    cursor: pointer;
+}
+
+.dashboard-nav .logo-icon {
+    font-size: 2rem;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
