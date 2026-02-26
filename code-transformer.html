@@ -191,6 +191,44 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Batch Transform Section -->
+            <div class="batch-transform">
+                <div class="batch-header">
+                    <h3>🔄 Batch Transform Multiple Files</h3>
+                    <button class="btn btn-secondary" onclick="toggleBatchTransform()">
+                        <span>Upload Multiple Files</span>
+                    </button>
+                </div>
+                <div class="batch-content" id="batchContent" style="display: none;">
+                    <div class="batch-upload">
+                        <input type="file" id="batchFileInput" multiple accept=".java,.cpp,.py,.js,.c,.h" onchange="handleBatchUpload(event)" style="display: none;">
+                        <div class="upload-zone" onclick="document.getElementById('batchFileInput').click()">
+                            <div class="upload-icon">📁</div>
+                            <p>Click to upload multiple files</p>
+                            <span class="upload-hint">Supports .java, .cpp, .py, .js, .c, .h</span>
+                        </div>
+                    </div>
+                    <div class="batch-files" id="batchFiles"></div>
+                    <button class="btn btn-primary" onclick="processBatchTransform()" id="batchTransformBtn" style="display: none;">
+                        Transform All Files
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Success Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✓</span>
+        <span class="toast-message">Code copied to clipboard!</span>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="transformer.js"></script>
+    <script src="templates.js"></script>
+</body>
+</html>
 
 
 
