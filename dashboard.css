@@ -321,3 +321,50 @@
 .scans-table tr:hover {
     background: var(--bg-light);
 }
+/* ===== CHART CONTAINER ===== */
+.chart-container {
+    padding: 20px;
+    background: var(--bg-light);
+    border-radius: 10px;
+}
+
+#riskChart {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        display: none;
+    }
+    
+    .welcome-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-main {
+        padding: 20px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .scans-table {
+        font-size: 0.9rem;
+    }
+    
+    .scans-table th,
+    .scans-table td {
+        padding: 10px;
+    }
+}
