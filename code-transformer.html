@@ -134,3 +134,36 @@
                     <input type="file" id="fileInput" style="display: none;" accept=".java,.cpp,.py,.js,.c,.h" onchange="handleFileUpload(event)">
                 </div>
 
+                <!-- Arrow Separator -->
+                <div class="code-arrow">
+                    <div class="arrow-icon">→</div>
+                    <div class="arrow-label">Transform</div>
+                </div>
+
+                <!-- After Panel -->
+                <div class="code-panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <span class="panel-icon">✅</span>
+                            <span>Quantum-Safe Code</span>
+                            <span class="risk-badge low">SAFE</span>
+                        </div>
+                        <div class="panel-actions">
+                            <button class="btn-icon" onclick="copyCode('after')" title="Copy">
+                                📋
+                            </button>
+                            <button class="btn-icon" onclick="downloadCode()" title="Download">
+                                💾
+                            </button>
+                        </div>
+                    </div>
+                    <div class="code-editor">
+                        <textarea id="afterCode" readonly placeholder="Transformed code will appear here..."></textarea>
+                    </div>
+                    <div class="code-preview" id="afterPreview">
+                        <pre><code class="language-java"></code></pre>
+                    </div>
+                </div>
+            </div>
+
+
