@@ -105,3 +105,32 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Code Editor Section -->
+            <div class="code-panels">
+                <!-- Before Panel -->
+                <div class="code-panel">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <span class="panel-icon">⚠️</span>
+                            <span>Vulnerable Code</span>
+                            <span class="risk-badge high">HIGH RISK</span>
+                        </div>
+                        <div class="panel-actions">
+                            <button class="btn-icon" onclick="copyCode('before')" title="Copy">
+                                📋
+                            </button>
+                            <button class="btn-icon" onclick="uploadCode()" title="Upload File">
+                                📁
+                            </button>
+                        </div>
+                    </div>
+                    <div class="code-editor">
+                        <textarea id="beforeCode" placeholder="Paste your vulnerable code here or select a template..."></textarea>
+                    </div>
+                    <div class="code-preview" id="beforePreview">
+                        <pre><code class="language-java"></code></pre>
+                    </div>
+                    <input type="file" id="fileInput" style="display: none;" accept=".java,.cpp,.py,.js,.c,.h" onchange="handleFileUpload(event)">
+                </div>
+
