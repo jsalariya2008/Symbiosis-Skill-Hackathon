@@ -131,3 +131,44 @@ function getRiskClass(score) {
     if (score >= 40) return 'risk-medium';
     return 'risk-low';
 }
+function viewScanDetails(project) {
+    // Redirect to results page or show modal
+    alert(`View details for ${project} - Feature coming soon!`);
+}
+
+function loadRiskChart() {
+    const canvas = document.getElementById('riskChart');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    
+    // Mock data
+    const data = {
+        labels: ['RSA', 'ECDSA', 'DH', 'DSA', 'ECC'],
+        values: [45, 32, 18, 12, 8]
+    };
+    
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Draw simple bar chart
+    const maxValue = Math.max(...data.values);
+    const barWidth = 60;
+    const barSpacing = 100;
+    const chartHeight = 300;
+    const colors = ['#667eea', '#764ba2', '#e74c3c', '#f39c12', '#3498db'];
+    
+    data.values.forEach((value, i) => {
+        const height = (value / maxValue) * chartHeight;
+        const x = 50 + i * barSpacing;
+        const y = canvas.height - height - 50;
+        
+        // Draw bar
+        ctx.fillStyle = colors[i];
+        ctx.fillRect(x, y, barWidth, height);
+        
+        // Draw value on top
+        ctx.fillStyle = '#333';
+        ctx.font = 'bold 16px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(value, x + barWidth / 2, y - 10);
