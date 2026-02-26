@@ -98,8 +98,7 @@
 
 .user-dropdown.show {
     display: block;
-    
-animation: slideDown 0.2s ease;
+    animation: slideDown 0.2s ease;
 }
 
 .user-dropdown a {
@@ -138,6 +137,7 @@ animation: slideDown 0.2s ease;
     padding: 0;
     margin: 0;
 }
+
 .menu-item {
     display: flex;
     align-items: center;
@@ -200,4 +200,45 @@ animation: slideDown 0.2s ease;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 25px;
     margin-bottom: 40px;
+}
+
+.stat-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.stat-icon {
+    font-size: 2rem;
+}
+
+.stat-trend {
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.stat-trend.up {
+    background: #d4edda;
+    color: #28a745;
+}
+
+.stat-trend.down {
+    background: #f8d7da;
+    color: #dc3545;
 }
