@@ -26,3 +26,31 @@ function displayUserInfo(user) {
     if (userName) {
         userName.textContent = user.name;
     }
+ // Update welcome message
+    const welcomeMessage = document.querySelector('.welcome-content h1');
+    if (welcomeMessage) {
+        welcomeMessage.textContent = `Welcome back, ${user.name.split(' ')[0]}! 👋`;
+    }
+}
+
+// ===== LOAD DASHBOARD DATA =====
+function loadDashboardData() {
+    // Load stats
+    loadStats();
+    
+    // Load recent scans
+    loadRecentScans();
+    
+    // Load risk chart
+    loadRiskChart();
+}
+
+function loadStats() {
+    // In production, fetch from API
+    // For demo, use mock data
+    const stats = {
+        totalScans: 47,
+        vulnerabilities: 156,
+        fixedIssues: 89,
+        securityScore: 72
+    };
