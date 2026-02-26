@@ -138,3 +138,35 @@ animation: slideDown 0.2s ease;
     padding: 0;
     margin: 0;
 }
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 30px;
+    color: var(--gray);
+    cursor: pointer;
+    transition: var(--transition);
+    border-left: 3px solid transparent;
+}
+
+.menu-item:hover {
+    background: var(--bg-light);
+    color: var(--primary);
+}
+
+.menu-item.active {
+    background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);
+    color: var(--primary);
+    border-left-color: var(--primary);
+    font-weight: 600;
+}
+
+.menu-icon {
+    font-size: 1.3rem;
+}
+
+/* ===== MAIN CONTENT ===== */
+.dashboard-main {
+    padding: 40px;
+    overflow-y: auto;
+}
