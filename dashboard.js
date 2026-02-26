@@ -54,3 +54,43 @@ function loadStats() {
         fixedIssues: 89,
         securityScore: 72
     };
+    // Update stat cards (if elements exist)
+    const statsElements = {
+        totalScans: document.querySelector('.stats-grid .stat-card:nth-child(1) .stat-value'),
+        vulnerabilities: document.querySelector('.stats-grid .stat-card:nth-child(2) .stat-value'),
+        fixedIssues: document.querySelector('.stats-grid .stat-card:nth-child(3) .stat-value'),
+        securityScore: document.querySelector('.stats-grid .stat-card:nth-child(4) .stat-value')
+    };
+    
+    if (statsElements.totalScans) statsElements.totalScans.textContent = stats.totalScans;
+    if (statsElements.vulnerabilities) statsElements.vulnerabilities.textContent = stats.vulnerabilities;
+    if (statsElements.fixedIssues) statsElements.fixedIssues.textContent = stats.fixedIssues;
+    if (statsElements.securityScore) statsElements.securityScore.textContent = stats.securityScore + '%';
+}
+
+function loadRecentScans() {
+    // Mock data for recent scans
+    const scans = [
+        {
+            project: 'BankingApp',
+            date: '2026-02-15',
+            files: 12,
+            riskScore: 85,
+            status: 'completed'
+        },
+        {
+            project: 'E-Commerce',
+            date: '2026-02-14',
+            files: 8,
+            riskScore: 45,
+            status: 'completed'
+        },
+        {
+            project: 'Mobile App',
+            date: '2026-02-13',
+            files: 15,
+            riskScore: 22,
+            status: 'completed'
+        }
+    ];
+    
