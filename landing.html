@@ -10,3 +10,108 @@
     <link rel="stylesheet" href="landing.css">
 </head>
 <body>
+<!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                <span class="logo-text">Quantum Shield</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="login.html" class="nav-btn">Login</a></li>
+                <li><a href="register.html" class="nav-btn primary">Get Started</a></li>
+            </ul>
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <span class="theme-icon">🌙</span>
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+      <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">🚀</span>
+                    <span>Powered by NIST PQC Standards</span>
+                </div>
+                <h1 class="hero-title">
+                    Protect Your Code From
+                    <span class="gradient-text">Quantum Threats</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Scan your codebase for quantum-vulnerable cryptography and get 
+                    actionable recommendations for quantum-safe alternatives.
+                </p>
+                <div class="hero-buttons">
+                    <a href="register.html" class="btn btn-primary btn-large">
+                        <span>Start Free Scan</span>
+                        <span class="btn-icon">→</span>
+                    </a>
+                    <a href="demo.mp4" class="btn btn-secondary btn-large">
+                        <span class="btn-icon">▶</span>
+                        <span>Watch Demo</span>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Scans Completed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Vulnerabilities Found</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Accuracy Rate</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card card-1">
+                    <div class="card-icon">⚠️</div>
+                    <div class="card-content">
+                        <div class="card-title">RSA Detected</div>
+                        <div class="card-subtitle">High Risk</div>
+                    </div>
+                </div>
+                <div class="floating-card card-2">
+                    <div class="card-icon">✅</div>
+                    <div class="card-content">
+                        <div class="card-title">Kyber-768</div>
+                        <div class="card-subtitle">Quantum Safe</div>
+                    </div>
+                </div>
+                <div class="floating-card card-3">
+                    <div class="card-icon">🔍</div>
+                    <div class="card-content">
+                        <div class="card-title">Scanning...</div>
+                        <div class="card-subtitle">47 files</div>
+                    </div>
+                </div>
+                <div class="code-preview">
+                    <div class="code-header">
+                        <span class="code-dot"></span>
+                        <span class="code-dot"></span>
+                        <span class="code-dot"></span>
+                    </div>
+                    <div class="code-body">
+                        <pre><code><span class="code-comment">// Vulnerable code detected</span>
+<span class="code-keyword">KeyPairGenerator</span> keyGen = 
+  KeyPairGenerator.<span class="code-method">getInstance</span>(<span class="code-string">"RSA"</span>);
+  
+<span class="code-comment">// ⚠️ Replace with Kyber-768</span></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
