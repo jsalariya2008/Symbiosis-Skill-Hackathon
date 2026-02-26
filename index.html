@@ -7,4 +7,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div class="container">
+        <div class="logo">🛡️</div>
+        <h1>Quantum Shield</h1>
+        <p class="subtitle">Scan your code for quantum-vulnerable encryption</p>
+        <div class="info-box">
+            <p>Upload your source code files to detect cryptographic algorithms that will be broken by quantum computers. Get instant recommendations for quantum-safe alternatives.</p>
+        </div>
+        <div class="upload-section">
+            <div class="upload-box" id="uploadBox">
+                <div class="upload-icon">📁</div>
+                <p class="upload-text">Drag & drop files here</p>
+                <p class="upload-subtext">or</p>
+                <label for="fileInput" class="file-label">
+                    <span>Choose Files</span>
+                </label>
+                <input type="file" id="fileInput" accept=".java,.cpp,.py,.js,.c,.h,.cs,.go,.php,.rb" multiple>
+                <p class="supported-files">Supported: .java, .cpp, .py, .js, .c, .h, .cs, .go, .php, .rb</p>
+            </div>
+            <div id="selectedFiles" class="selected-files"></div>
+            <button onclick="scanFiles()" class="btn-primary" id="scanButton" disabled>
+                <span class="btn-icon">🔍</span>
+                <span>Scan Now</span>
+            </button>
+        </div>
