@@ -34,3 +34,50 @@
         </div>
     </nav>
 
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li class="menu-item active">
+                    <span class="menu-icon">📊</span>
+                    <span>Dashboard</span>
+                </li>
+                <li class="menu-item" onclick="location.href='index.html'">
+                    <span class="menu-icon">🔍</span>
+                    <span>Scan Code</span>
+                </li>
+                <li class="menu-item">
+                    <span class="menu-icon">📜</span>
+                    <span>Scan History</span>
+                </li>
+                <li class="menu-item">
+                    <span class="menu-icon">📈</span>
+                    <span>Analytics</span>
+                </li>
+                <li class="menu-item" onclick="location.href='profile.html'">
+                    <span class="menu-icon">👤</span>
+                    <span>Profile</span>
+                </li>
+                <li class="menu-item" onclick="location.href='code-transformer.html'">
+    <span class="menu-icon">🔄</span>
+    <span>Code Transformer</span>
+</li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-content">
+                    <h1>Welcome back, John! 👋</h1>
+                    <p>Here's your security overview for today</p>
+                </div>
+                <div class="quick-actions">
+                    <button class="btn btn-primary" onclick="location.href='index.html'">
+                        Start New Scan
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
