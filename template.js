@@ -47,3 +47,55 @@ public class CryptoExample {
         notes: 'Kyber uses a Key Encapsulation Mechanism (KEM) rather than direct encryption.',
         libraries: ['Bouncy Castle PQC']
     },
+
+    python_rsa_to_kyber: {
+        id: 'python_rsa_to_kyber',
+        name: 'RSA → Kyber (Python)',
+        language: 'python',
+        category: 'python',
+        description: 'Migrate Python RSA code to Kyber-768',
+        tags: ['RSA', 'Kyber', 'Python'],
+        before: `from Crypto.PublicKey import RSA
+from Crypto.Cipher import PKCS1_OAEP
+
+class CryptoHandler:
+    def generate_keys(self):
+        # Vulnerable: RSA key generation
+        key = RSA.generate(2048)
+        return key.publickey(), key
+    
+    def encrypt(self, data, public_key):
+        cipher = PKCS1_OAEP.new(public_key)
+        return cipher.encrypt(data)`,
+        after: `from pqcrypto.kem.kyber768 import generate_keypair, encrypt, decrypt
+from Crypto.Cipher import AES
+import hashlib
+
+class CryptoHandler:
+    def generate_keys(self):
+        # Quantum-safe: Kyber-768 key generation
+        public_key, secret_key = generate_keypair()
+        return public_key, secret_key
+    
+    def encrypt(self, data, public_key):
+        # Encapsulate a shared secret using Kyber
+        ciphertext, shared_secret = encrypt(public_key)
+        
+        # Derive AES key from shared secret
+        aes_key = hashlib.sha256(shared_secret).digest()
+        
+        # Encrypt data with AES
+        cipher = AES.new(aes_key, AES.MODE_GCM)
+        encrypted_data, tag = cipher.encrypt_and_digest(data)
+        
+        return {
+            'kyber_ciphertext': ciphertext,
+            'nonce': cipher.nonce,
+            'tag': tag,
+            'encrypted_data': encrypted_data
+        }`,
+        changes: [
+            'Replaced RSA with Kyber-768',
+            'Added KEM-based key encapsulation',
+            'Integrated AES-GCM for data encryption'
+        ],
