@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Phish Detector</title>
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="phish-detector.css">
+</head>
+
+<body class="dashboard-page">
+
+<!-- Top Navigation -->
+<nav class="dashboard-nav">
+    <div class="nav-container">
+        <div class="logo" onclick="location.href='dashboard.html'">
+            🛡️ Quantum Shield
+        </div>
+    </div>
+</nav>
+
+<div class="dashboard-layout">
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+
+        <!-- Header -->
+        <div class="detector-header">
+            <h1>🛡️ Quantum Upgrade Phishing Detector</h1>
+            <p>Identify fake quantum security upgrades, crypto scams & impersonation attacks</p>
+        </div>
+
+        <!-- Detector Card -->
+        <div class="detector-card">
+
+            <label>Suspicious Message</label>
+            <textarea id="phishText"
+                placeholder="Paste suspicious email or message here..."></textarea>
+
+            <label>Suspicious Link (optional)</label>
+            <input id="phishUrl"
+                placeholder="https://example.xyz">
+
+            <button onclick="scanPhishing()" class="btn btn-primary scan-btn">
+                🔍 Scan for Threats
+            </button>
+
+            <!-- Loading -->
+            <div id="scanLoading" class="scan-loading">
+                Scanning threat patterns...
+            </div>
+
+            <!-- Results -->
+            <div id="phishResult" class="result-card"></div>
+
+        </div>
+
+    </main>
+</div>
+
+<script src="phish-detector.js"></script>
+</body>
+</html>
