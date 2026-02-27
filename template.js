@@ -155,3 +155,45 @@ public:
         return OQS_KEM_keypair(kem, *public_key, *secret_key) == OQS_SUCCESS;
     }
 };`,
+         changes: [
+            'Replaced OpenSSL RSA with liboqs Kyber',
+            'Changed from RSA to KEM approach',
+            'Added proper memory management'
+        ],
+        improvements: [
+            'Quantum-resistant cryptography',
+            'Efficient implementation',
+            'Well-tested library (liboqs)'
+        ],
+        notes: 'Requires liboqs library. Install: https://github.com/open-quantum-safe/liboqs',
+        libraries: ['liboqs']
+    },
+
+    java_ecdsa_to_dilithium: {
+        id: 'java_ecdsa_to_dilithium',
+        name: 'ECDSA → Dilithium (Java)',
+        language: 'java',
+        category: 'java',
+        description: 'Convert ECDSA signatures to Dilithium',
+        tags: ['ECDSA', 'Dilithium', 'Signatures'],
+        before: `import java.security.*;
+
+public class SignatureExample {
+    public byte[] signData(byte[] data, PrivateKey privateKey) 
+            throws Exception {
+        // Vulnerable: ECDSA signature
+        Signature signature = Signature.getInstance("SHA256withECDSA");
+        signature.initSign(privateKey);
+        signature.update(data);
+        return signature.sign();
+    }
+}`,
+        after: `import org.bouncycastle.pqc.jcajce.provider.BouncyCastlePQCProvider;
+import org.bouncycastle.pqc.jcajce.spec.DilithiumParameterSpec;
+import java.security.*;
+
+public class SignatureExample {
+    static {
+        Security.addProvider(new BouncyCastlePQCProvider());
+    }
+    
