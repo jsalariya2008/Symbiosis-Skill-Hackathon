@@ -215,3 +215,76 @@ function toggleUserMenu() {
 // ===== EXPORT FUNCTIONS =====
 window.toggleUserMenu = toggleUserMenu;
 window.viewScanDetails = viewScanDetails;
+
+function scanPhishing() {
+    const text = document.getElementById("phishText").value.toLowerCase();
+    const url = document.getElementById("phishUrl").value.toLowerCase();
+    const resultBox = document.getElementById("phishResult");
+
+    if (!text && !url) {
+        resultBox.innerHTML = "⚠️ Enter message or URL";
+        return;
+    }
+
+    let score = 0;
+    let findings = [];
+
+    const phishingKeywords = [
+        "quantum upgrade",
+        "quantum safe",
+        "upgrade encryption",
+        "security upgrade required",
+        "urgent action",
+        "click immediately",
+        "verify wallet",
+        "crypto upgrade",
+        "update security now"
+    ];
+
+    const brands = ["paypal", "metamask", "coinbase", "bank", "google", "microsoft"];
+    const suspiciousTLDs = [".xyz", ".top", ".ru", ".tk", ".click"];
+
+    phishingKeywords.forEach(word => {
+        if (text.includes(word)) {
+            score += 2;
+            findings.push("⚠️ Phishing phrase detected: " + word);
+        }
+    });
+
+    brands.forEach(brand => {
+        if (text.includes(brand)) {
+            score += 1;
+            findings.push("⚠️ Brand impersonation: " + brand);
+        }
+    });
+
+    if (url) {
+        suspiciousTLDs.forEach(tld => {
+            if (url.endsWith(tld)) {
+                score += 2;
+                findings.push("⚠️ Suspicious domain extension");
+            }
+        });
+
+        if (url.includes("-")) {
+            score += 1;
+            findings.push("⚠️ Possible impersonation domain");
+        }
+    }
+
+    let risk = "LOW";
+    let color = "green";
+
+    if (score >= 6) {
+        risk = "HIGH";
+        color = "red";
+    } else if (score >= 3) {
+        risk = "MEDIUM";
+        color = "orange";
+    }
+
+    resultBox.innerHTML =
+        `<span style="color:${color}">
+            Risk Level: ${risk} (Score: ${score})
+        </span><br>${findings.join("<br>")}`;
+}
