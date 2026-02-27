@@ -124,3 +124,88 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+function calculatePasswordStrength(password) {
+    if (password.length === 0) return '';
+    if (password.length < 8) return 'weak';
+    
+    let strength = 0;
+    
+    // Check length
+    if (password.length >= 12) strength++;
+    
+    // Check for numbers
+    if (/\d/.test(password)) strength++;
+    
+    // Check for lowercase and uppercase
+    if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+    
+    // Check for special characters
+    if (/[^a-zA-Z0-9]/.test(password)) strength++;
+    
+    if (strength <= 1) return 'weak';
+    if (strength <= 2) return 'medium';
+    return 'strong';
+}
+
+// ===== FORM ERROR/SUCCESS MESSAGES =====
+function showFormError(message) {
+    // Remove any existing messages
+    const existingError = document.querySelector('.form-error');
+    if (existingError) {
+        existingError.remove();
+    }
+    
+    // Create error message
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'form-error show';
+    errorDiv.textContent = message;
+    errorDiv.style.background = '#f8d7da';
+    errorDiv.style.border = '1px solid #f5c6cb';
+    errorDiv.style.color = '#721c24';
+    errorDiv.style.padding = '12px 15px';
+    errorDiv.style.borderRadius = '8px';
+    errorDiv.style.marginBottom = '20px';
+    
+    // Insert at top of form
+    const form = document.querySelector('.auth-form');
+    form.insertBefore(errorDiv, form.firstChild);
+    
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+        errorDiv.remove();
+    }, 5000);
+}
+
+function showFormSuccess(message) {
+    // Remove any existing messages
+    const existingSuccess = document.querySelector('.form-success');
+    if (existingSuccess) {
+        existingSuccess.remove();
+    }
+    
+    // Create success message
+    const successDiv = document.createElement('div');
+    successDiv.className = 'form-success show';
+    successDiv.textContent = message;
+    
+    // Insert at top of form
+    const form = document.querySelector('.auth-form');
+    form.insertBefore(successDiv, form.firstChild);
+}
+
+// ===== CHECK IF ALREADY LOGGED IN =====
+document.addEventListener('DOMContentLoaded', function() {
+    // If on login/register page and already logged in, redirect to dashboard
+    if (window.location.pathname.includes('login.html') || 
+        window.location.pathname.includes('register.html')) {
+        
+        const user = localStorage.getItem('user');
+        if (user) {
+            window.location.href = 'dashboard.html';
+        }
+    }
+});
+
+// ===== EXPORT FUNCTIONS =====
+window.handleLogin = handleLogin;
+window.handleRegister = handleRegister;
