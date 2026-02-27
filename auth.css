@@ -99,6 +99,7 @@
     margin-bottom: 15px;
     font-size: 1.1rem;
 }
+
 .feature-check {
     width: 30px;
     height: 30px;
@@ -196,6 +197,7 @@
     width: auto;
     cursor: pointer;
 }
+
 .checkbox span {
     font-size: 0.9rem;
     color: var(--gray);
@@ -296,6 +298,7 @@
     font-weight: 500;
     color: var(--dark);
 }
+
 .btn-social:hover {
     border-color: var(--primary);
     background: #f8f9fa;
@@ -401,6 +404,7 @@
         transform: translateX(0);
     }
 }
+
 @keyframes slideInRight {
     from {
         opacity: 0;
