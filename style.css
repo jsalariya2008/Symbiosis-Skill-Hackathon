@@ -635,3 +635,113 @@ h3 {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
+.recommendation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+}
+
+.recommendation-card h3 {
+    color: #667eea;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+.recommendation-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .upload-box {
+        padding: 40px 20px;
+    }
+
+    .stats-row {
+        grid-template-columns: 1fr;
+    }
+
+    .risk-score-card {
+        flex-direction: column;
+        padding: 30px 20px;
+    }
+
+    .score-circle {
+        width: 150px;
+        height: 150px;
+    }
+
+    #score {
+        font-size: 3em;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+    .recommendation-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .vuln-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .vuln-type {
+        min-width: 100%;
+    }
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-center {
+    text-align: center;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none;
+}
+.transform-action {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e9ecef;
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 0.9em;
+}
