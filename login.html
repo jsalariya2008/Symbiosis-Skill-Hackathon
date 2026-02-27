@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Quantum Shield</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div class="auth-page">
+        <!-- Left Side - Branding -->
+        <div class="auth-visual">
+            <div class="visual-content">
+                <div class="logo-large">
+                    <span class="logo-icon">🛡️</span>
+                    <span class="logo-text">Quantum Shield</span>
+                </div>
+                <h2>Secure Your Code for the Quantum Era</h2>
+                <p>Detect quantum-vulnerable cryptography and get actionable recommendations</p>
+                <div class="visual-stats">
+                    <div class="visual-stat">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Scans Completed</div>
+                    </div>
+                    <div class="visual-stat">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Accuracy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Login Form -->
+        <div class="auth-form-container">
+            <div class="auth-form-wrapper">
+                <div class="auth-header">
+                    <h1>Welcome Back</h1>
+                    <p>Login to continue scanning your code</p>
+                </div>
+
+                <form class="auth-form" id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="you@example.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Enter your password"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox" name="remember">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <span>Login</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </form>
+
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+
+                <div class="social-login">
+                    <button class="btn-social">
+                        <span class="social-icon">G</span>
+                        <span>Google</span>
+                    </button>
+                    <button class="btn-social">
+                        <span class="social-icon">🐙</span>
+                        <span>GitHub</span>
+                    </button>
+                </div>
+
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="register.html">Sign up</a></p>
+                </div>
+
+                <div class="back-home">
+                    <a href="landing.html">← Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
