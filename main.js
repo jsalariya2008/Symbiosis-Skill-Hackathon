@@ -44,3 +44,68 @@ document.addEventListener('click', function(event) {
         }
     }
 });
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// ===== SCROLL ANIMATIONS =====
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.animation = 'fadeIn 0.6s ease forwards';
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe all feature cards and steps
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.feature-card, .step').forEach(el => {
+        el.style.opacity = '0';
+        observer.observe(el);
+    });
+});
+
+// ===== USER AUTHENTICATION STATE =====
+function checkAuth() {
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
+}
+
+function isLoggedIn() {
+    return checkAuth() !== null;
+}
+
+function getUser() {
+    return checkAuth();
+}
+
+function logout() {
+    localStorage.removeItem('user');
+    localStorage.removeItem('authToken');
+    window.location.href = '../pages/landing.html';
+}
+
+// ===== EXPORT FUNCTIONS =====
+window.toggleTheme = toggleTheme;
+window.toggleMenu = toggleMenu;
+window.checkAuth = checkAuth;
+window.isLoggedIn = isLoggedIn;
+window.getUser = getUser;
+window.logout = logout;
