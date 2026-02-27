@@ -242,6 +242,7 @@
     background: #f8d7da;
     color: #dc3545;
 }
+
 .stat-trend.neutral {
     background: #e9ecef;
     color: #6c757d;
@@ -287,6 +288,7 @@
     font-weight: 600;
     font-size: 0.95rem;
 }
+
 .view-all:hover {
     text-decoration: underline;
 }
@@ -321,6 +323,39 @@
 .scans-table tr:hover {
     background: var(--bg-light);
 }
+
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-badge.completed {
+    background: #d4edda;
+    color: #28a745;
+}
+
+.status-badge.processing {
+    background: #fff3cd;
+    color: #ffc107;
+}
+
+.status-badge.failed {
+    background: #f8d7da;
+    color: #dc3545;
+}
+
+.risk-score-cell {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.risk-high { color: #dc3545; }
+.risk-medium { color: #ffc107; }
+.risk-low { color: #28a745; }
+
 /* ===== CHART CONTAINER ===== */
 .chart-container {
     padding: 20px;
@@ -367,4 +402,28 @@
     .scans-table td {
         padding: 10px;
     }
+}
+/* Phishing Detector */
+.phish-detector {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.phish-detector textarea {
+    width: 100%;
+    height: 120px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.phish-detector input {
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.phish-result {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 16px;
 }
