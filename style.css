@@ -453,3 +453,68 @@ h3 {
     color: #666;
     line-height: 1.6;
 }
+/* ===== CHART SECTION ===== */
+.chart-section {
+    margin: 40px 0;
+}
+
+.chart-container {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+#vulnChart {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ===== VULNERABILITIES SECTION ===== */
+.vulnerabilities-section {
+    margin: 40px 0;
+}
+
+.vuln-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.no-vuln {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    border: 2px solid #c3e6cb;
+    border-left: 5px solid #28a745;
+    color: #155724;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.vuln-item {
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    padding: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.vuln-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.vuln-item.high { border-left: 5px solid #dc3545; }
+.vuln-item.medium { border-left: 5px solid #ffc107; }
+.vuln-item.low { border-left: 5px solid #28a745; }
+
+.vuln-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
