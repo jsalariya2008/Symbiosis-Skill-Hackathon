@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - PhishGuard</title>
+    <title>Dashboard - CrypNova</title>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="dashboard.css">
 </head>
@@ -13,7 +13,7 @@
         <div class="nav-container">
             <div class="logo">
                 <span class="logo-icon">🛡️</span>
-                <span class="logo-text">PhishGuard</span>
+                <span class="logo-text">CrypNova</span>
             </div>
             <div class="nav-actions">
                 <button class="btn btn-primary" onclick="location.href='index.html'">
@@ -46,6 +46,10 @@
                     <span class="menu-icon">🔍</span>
                     <span>Scan Code</span>
                 </li>
+                <li class="menu-item" onclick="location.href='phish-detector.html'">
+    <span class="menu-icon">🛡️</span>
+    <span>Phish Detector</span>
+</li>
                 <li class="menu-item">
                     <span class="menu-icon">📜</span>
                     <span>Scan History</span>
@@ -87,26 +91,6 @@
                     </button>
                 </div>
             </div>
-              <!-- Quantum Phishing Detector -->
-<div class="dashboard-section">
-    <div class="section-header">
-        <h2>🛡️ Quantum Upgrade Phish Detector</h2>
-    </div>
-
-    <div class="phish-detector">
-        <textarea id="phishText"
-            placeholder="Paste suspicious email or message here..."></textarea>
-
-        <input id="phishUrl"
-            placeholder="Paste suspicious link (optional)">
-
-        <button class="btn btn-primary" onclick="scanPhishing()">
-            Scan Message
-        </button>
-
-        <div id="phishResult" class="phish-result"></div>
-    </div>
-</div>
 
 
             <!-- Stats Overview -->
