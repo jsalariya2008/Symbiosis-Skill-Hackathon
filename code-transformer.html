@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Transformer - Quantum Shield</title>
+    <title>Code Transformer - PhishGuard</title>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="transformer.css">
     <!-- Syntax Highlighting -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="storage.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -16,7 +17,7 @@
         <div class="nav-container">
             <div class="logo" onclick="location.href='dashboard.html'">
                 <span class="logo-icon">🛡️</span>
-                <span class="logo-text">Quantum Shield</span>
+                <span class="logo-text">PhishGuard</span>
             </div>
             <div class="nav-breadcrumb">
                 <a href="dashboard.html">Dashboard</a>
@@ -38,7 +39,7 @@
                 <h3>🔧 Templates</h3>
                 <button class="btn-icon" onclick="toggleSidebar()">≡</button>
             </div>
- 
+
             <div class="template-search">
                 <input type="text" placeholder="Search templates..." id="templateSearch" oninput="filterTemplates()">
             </div>
@@ -72,7 +73,7 @@
             </div>
 
             <div class="template-list" id="templateList">
-                                <!-- Templates populated by JavaScript -->
+                <!-- Templates populated by JavaScript -->
             </div>
         </aside>
 
@@ -105,7 +106,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Code Editor Section -->
             <div class="code-panels">
                 <!-- Before Panel -->
@@ -165,7 +166,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Transformation Details -->
             <div class="transformation-details" id="transformationDetails" style="display: none;">
                 <div class="details-header">
@@ -191,7 +192,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Batch Transform Section -->
             <div class="batch-transform">
                 <div class="batch-header">
@@ -225,10 +226,7 @@
     </div>
 
     <script src="main.js"></script>
-    <script src="transformer.js"></script>
     <script src="templates.js"></script>
+    <script src="transformer.js"></script>
 </body>
 </html>
-
-
-
