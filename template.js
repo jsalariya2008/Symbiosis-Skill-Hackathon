@@ -99,3 +99,59 @@ class CryptoHandler:
             'Added KEM-based key encapsulation',
             'Integrated AES-GCM for data encryption'
         ],
+         improvements: [
+            'Quantum-resistant security',
+            'Authenticated encryption',
+            'Faster key generation'
+        ],
+        notes: 'Install required library: pip install pqcrypto',
+        libraries: ['pqcrypto', 'pycryptodome']
+    },
+
+    cpp_rsa_to_kyber: {
+        id: 'cpp_rsa_to_kyber',
+        name: 'RSA → Kyber (C++)',
+        language: 'cpp',
+        category: 'cpp',
+        description: 'Convert OpenSSL RSA to liboqs Kyber',
+        tags: ['RSA', 'Kyber', 'C++', 'OpenSSL'],
+        before: `#include <openssl/rsa.h>
+#include <openssl/pem.h>
+
+class CryptoManager {
+public:
+    RSA* generateKeys() {
+        // Vulnerable: RSA key generation
+        RSA *rsa = RSA_new();
+        BIGNUM *bne = BN_new();
+        BN_set_word(bne, RSA_F4);
+        RSA_generate_key_ex(rsa, 2048, bne, NULL);
+        BN_free(bne);
+        return rsa;
+    }
+};`,
+        after: `#include <oqs/oqs.h>
+#include <cstring>
+
+class CryptoManager {
+private:
+    OQS_KEM *kem = nullptr;
+    
+public:
+    CryptoManager() {
+        // Initialize Kyber-768
+        kem = OQS_KEM_new(OQS_KEM_alg_kyber_768);
+    }
+    
+    ~CryptoManager() {
+        if (kem) OQS_KEM_free(kem);
+    }
+    
+    bool generateKeys(uint8_t **public_key, uint8_t **secret_key) {
+        // Quantum-safe: Kyber-768 key generation
+        *public_key = new uint8_t[kem->length_public_key];
+        *secret_key = new uint8_t[kem->length_secret_key];
+        
+        return OQS_KEM_keypair(kem, *public_key, *secret_key) == OQS_SUCCESS;
+    }
+};`,
