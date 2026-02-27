@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantum Shield - Crypto Scanner</title>
+    <title>PhishGuard - Crypto Scanner</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">
+    <div class="container">
         <div class="logo">🛡️</div>
-        <h1>Quantum Shield</h1>
+        <h1>PhishGuard</h1>
         <p class="subtitle">Scan your code for quantum-vulnerable encryption</p>
+        
         <div class="info-box">
             <p>Upload your source code files to detect cryptographic algorithms that will be broken by quantum computers. Get instant recommendations for quantum-safe alternatives.</p>
         </div>
+
         <div class="upload-section">
             <div class="upload-box" id="uploadBox">
                 <div class="upload-icon">📁</div>
@@ -25,13 +27,16 @@
                 <input type="file" id="fileInput" accept=".java,.cpp,.py,.js,.c,.h,.cs,.go,.php,.rb" multiple>
                 <p class="supported-files">Supported: .java, .cpp, .py, .js, .c, .h, .cs, .go, .php, .rb</p>
             </div>
+
             <div id="selectedFiles" class="selected-files"></div>
+
             <button onclick="scanFiles()" class="btn-primary" id="scanButton" disabled>
                 <span class="btn-icon">🔍</span>
                 <span>Scan Now</span>
             </button>
         </div>
-      <div id="loading" class="loading">
+
+        <div id="loading" class="loading">
             <div class="spinner"></div>
             <p>Scanning files for quantum vulnerabilities...</p>
             <p class="loading-subtext">This may take a few moments</p>
@@ -57,5 +62,6 @@
     </div>
 
     <script src="script.js"></script>
+     <script src="storage.js"></script>
 </body>
 </html>
