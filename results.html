@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Results - Quantum Shield</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container results-container">
+        <div class="results-header">
+            <h1>📊 Security Scan Results</h1>
+            <p class="scan-date" id="scanDate"></p>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-icon">📁</div>
+                <div class="stat-number" id="filesScanned">0</div>
+                <div class="stat-label">Files Scanned</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">⚠️</div>
+                <div class="stat-number" id="vulnsFound">0</div>
+                <div class="stat-label">Vulnerabilities</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">🔍</div>
+                <div class="stat-number" id="linesScanned">0</div>
+                <div class="stat-label">Lines Scanned</div>
+            </div>
+        </div>
+
+        <div class="risk-score-section">
+            <h2>Risk Assessment</h2>
+            <div class="risk-score-card">
+                <div class="score-circle">
+                    <div class="score-value">
+                        <span id="score">0</span>
+                        <span class="score-max">/100</span>
+                    </div>
+                </div>
+                <div class="risk-details">
+                    <div class="risk-level" id="riskLevel">
+                        <span class="risk-badge">ANALYZING</span>
+                    </div>
+                    <p id="riskMessage" class="risk-message">Calculating risk level...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-section">
+            <h2>Vulnerability Distribution</h2>
+            <div class="chart-container">
+                <canvas id="vulnChart" width="600" height="300"></canvas>
+            </div>
+        </div>
+
+        <div class="vulnerabilities-section">
+            <h2>Detailed Findings</h2>
+            <div id="vulnList" class="vuln-list"></div>
+        </div>
+        <!-- Add this in the vuln-details section of each vulnerability card -->
+<div class="vuln-details">
+    <p><strong>📁 File:</strong> ${vuln.file}</p>
+    <p><strong>📍 Line:</strong> ${vuln.line}</p>
+    <p><strong>💻 Code:</strong> <code>${escapeHtml(vuln.code)}</code></p>
+    <div class="vuln-recommendation">
+        <p><strong>✅ Recommendation:</strong> ${vuln.recommendation}</p>
+    </div>
+    
+    <!-- NEW: Transform Button -->
+    <div class="transform-action">
+        <button class="btn btn-secondary btn-small" onclick="transformCode('${escapeHtml(vuln.type)}', '${escapeHtml(vuln.code)}')">
+            <span class="btn-icon">🔄</span>
+            <span>Auto-Fix with Template</span>
+        </button>
+    </div>
+</div>
+
+        <div class="action-buttons">
+            <button onclick="downloadReport()" class="btn-primary">
+                <span class="btn-icon">📄</span>
+                <span>Download PDF Report</span>
+            </button>
+            <button onclick="goBack()" class="btn-secondary">
+                <span class="btn-icon">←</span>
+                <span>Scan New Files</span>
+            </button>
+        </div>
+
+        <div class="recommendations-section">
+            <h2>🛡️ Quantum-Safe Alternatives</h2>
+            <div class="recommendation-grid">
+                <div class="recommendation-card">
+                    <h3>RSA → Kyber</h3>
+                    <p>Use CRYSTALS-Kyber for key encapsulation mechanism (KEM)</p>
+                </div>
+                <div class="recommendation-card">
+                    <h3>ECDSA → Dilithium</h3>
+                    <p>Use CRYSTALS-Dilithium for digital signatures</p>
+                </div>
+                <div class="recommendation-card">
+                    <h3>DH → Kyber</h3>
+                    <p>Use Kyber for key exchange instead of Diffie-Hellman</p>
+                </div>
+                <div class="recommendation-card">
+                    <h3>DSA → FALCON</h3>
+                    <p>Use FALCON for compact digital signatures</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
