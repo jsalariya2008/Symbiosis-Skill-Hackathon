@@ -137,3 +137,67 @@ h3 {
     color: #999;
     margin: 15px 0;
 }
+.file-label {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.file-label:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+#fileInput {
+    display: none;
+}
+
+.supported-files {
+    margin-top: 20px;
+    color: #999;
+    font-size: 0.9em;
+}
+
+/* ===== SELECTED FILES ===== */
+.selected-files {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    display: none;
+}
+
+.selected-files.show {
+    display: block;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    margin: 8px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.file-item-icon {
+    font-size: 1.5em;
+    margin-right: 15px;
+}
+
+.file-item-name {
+    flex: 1;
+    font-weight: 500;
+    color: #333;
+}
+
+.file-item-size {
+    color: #999;
+    font-size: 0.9em;
+}
