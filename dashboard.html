@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Quantum Shield</title>
+    <title>Dashboard - PhishGuard</title>
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="dashboard.css">
 </head>
@@ -13,9 +13,9 @@
         <div class="nav-container">
             <div class="logo">
                 <span class="logo-icon">🛡️</span>
-                <span class="logo-text">Quantum Shield</span>
+                <span class="logo-text">PhishGuard</span>
             </div>
-<div class="nav-actions">
+            <div class="nav-actions">
                 <button class="btn btn-primary" onclick="location.href='index.html'">
                     <span class="btn-icon">+</span>
                     <span>New Scan</span>
@@ -24,12 +24,12 @@
                     <div class="user-avatar">JD</div>
                     <span class="user-name">John Doe</span>
                     <span class="dropdown-icon">▼</span>
-                    <div class="user-dropdown" id="userDropdown">
-                        <a href="profile.html">Profile</a>
-                        <a href="#">Settings</a>
-                        <a href="#" onclick="logout()">Logout</a>
-                    </div>
-                      </div>
+                        <div class="user-dropdown" id="userDropdown">
+    <a href="profile.html">Profile</a>
+    <a href="settings.html">Settings</a>  <!-- ADD THIS -->
+    <a href="#" onclick="logout()">Logout</a>
+</div>
+                </div>
             </div>
         </div>
     </nav>
@@ -58,6 +58,14 @@
                     <span class="menu-icon">👤</span>
                     <span>Profile</span>
                 </li>
+                <li class="menu-item" onclick="location.href='settings.html'">
+    <span class="menu-icon">⚙️</span>
+    <span>Settings</span>
+</li>
+                <li class="menu-item" onclick="location.href='url-scanner.html'">
+    <span class="menu-icon">🔗</span>
+    <span>URL Scanner</span>
+</li>
                 <li class="menu-item" onclick="location.href='code-transformer.html'">
     <span class="menu-icon">🔄</span>
     <span>Code Transformer</span>
@@ -79,9 +87,30 @@
                     </button>
                 </div>
             </div>
+              <!-- Quantum Phishing Detector -->
+<div class="dashboard-section">
+    <div class="section-header">
+        <h2>🛡️ Quantum Upgrade Phish Detector</h2>
+    </div>
+
+    <div class="phish-detector">
+        <textarea id="phishText"
+            placeholder="Paste suspicious email or message here..."></textarea>
+
+        <input id="phishUrl"
+            placeholder="Paste suspicious link (optional)">
+
+        <button class="btn btn-primary" onclick="scanPhishing()">
+            Scan Message
+        </button>
+
+        <div id="phishResult" class="phish-result"></div>
+    </div>
+</div>
+
 
             <!-- Stats Overview -->
-   <div class="stats-grid">
+            <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-header">
                         <span class="stat-icon">📁</span>
@@ -140,7 +169,8 @@
                     </table>
                 </div>
             </div>
- <!-- Risk Distribution Chart -->
+
+            <!-- Risk Distribution Chart -->
             <div class="dashboard-section">
                 <div class="section-header">
                     <h2>Risk Distribution</h2>
@@ -152,7 +182,10 @@
         </main>
     </div>
 
+  
+
     <script src="main.js"></script>
     <script src="dashboard.js"></script>
+    <script src="storage.js"></script>
 </body>
 </html>
