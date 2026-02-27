@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Scanner - PhishGuard</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .scanner-container {
+            max-width: 900px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .url-input-section {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .url-input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', monospace;
+        }
+
+        .url-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .platform-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .platform-option {
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .platform-option:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .platform-option.active {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .platform-icon {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .examples {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 20px;
+        }
+
+        .examples h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .example-url {
+            font-family: 'Courier New', monospace;
+            color: #666;
+            font-size: 0.9rem;
+            margin: 5px 0;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .example-url:hover {
+            color: #667eea;
+            text-decoration: underline;
+        }
+
+        .scan-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .option-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .option-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .scan-button {
+            width: 100%;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .scan-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .scan-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .progress-section {
+            display: none;
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .progress-section.active {
+            display: block;
+        }
+
+        .progress-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 30px;
+            background: #e9ecef;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .progress-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .step-icon.completed {
+            background: #28a745;
+            color: white;
+        }
+
+        .step-icon.active {
+            background: #667eea;
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .step-details {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .step-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .scanner-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .scan-options {
+                grid-template-columns: 1fr;
+            }
+
+            .platform-selector {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scanner-container">
+        <div class="header">
+            <div class="logo-icon">🔗</div>
+            <h1>URL Repository Scanner</h1>
+            <p class="subtitle">Scan entire GitHub repositories or websites for quantum vulnerabilities</p>
+        </div>
+
+        <div class="url-input-section">
+            <div class="input-group">
+                <label for="repoUrl">Repository or Website URL</label>
+                <input 
+                    type="text" 
+                    id="repoUrl" 
+                    class="url-input"
+                    placeholder="https://github.com/username/repository"
+                >
+            </div>
+            <!-- Add this right after the URL input section -->
+<div style="text-align: center; margin: 20px 0;">
+    <p style="color: #666;">
+        Want to scan private repositories or avoid rate limits?
+        <a href="settings.html" style="color: #667eea; font-weight: 600;">
+            Configure GitHub Token in Settings →
+        </a>
+    </p>
+</div>
+
+            <div class="platform-selector">
+                <div class="platform-option active" data-platform="github" onclick="selectPlatform('github')">
+                    <div class="platform-icon">🐙</div>
+                    <div>GitHub</div>
+                </div>
+                <div class="platform-option" data-platform="gitlab" onclick="selectPlatform('gitlab')">
+                    <div class="platform-icon">🦊</div>
+                    <div>GitLab</div>
+                </div>
+                <div class="platform-option" data-platform="bitbucket" onclick="selectPlatform('bitbucket')">
+                    <div class="platform-icon">🪣</div>
+                    <div>Bitbucket</div>
+                </div>
+                <div class="platform-option" data-platform="website" onclick="selectPlatform('website')">
+                    <div class="platform-icon">🌐</div>
+                    <div>Website</div>
+                </div>
+            </div>
+
+            <div class="examples">
+                <h3>📝 Example URLs:</h3>
+                <div class="example-url" onclick="fillExample('github')">
+                    https://github.com/example/crypto-app
+                </div>
+                <div class="example-url" onclick="fillExample('gitlab')">
+                    https://gitlab.com/example/secure-api
+                </div>
+                <div class="example-url" onclick="fillExample('website')">
+                    https://example.com
+                </div>
+            </div>
+
+            <div class="scan-options">
+                <label class="option-checkbox">
+                    <input type="checkbox" id="scanSubmodules" checked>
+                    <span>Include submodules</span>
+                </label>
+                <label class="option-checkbox">
+                    <input type="checkbox" id="scanTests" checked>
+                    <span>Scan test files</span>
+                </label>
+                <label class="option-checkbox">
+                    <input type="checkbox" id="deepScan">
+                    <span>Deep scan (slower)</span>
+                </label>
+                <label class="option-checkbox">
+                    <input type="checkbox" id="scanDependencies">
+                    <span>Check dependencies</span>
+                </label>
+            </div>
+
+            <button class="scan-button" onclick="startUrlScan()">
+                <span>🔍 Scan Repository</span>
+            </button>
+        </div>
+
+        <div class="progress-section" id="progressSection">
+            <div class="progress-header">
+                <h2>⏳ Scanning in Progress...</h2>
+            </div>
+
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar">0%</div>
+            </div>
+
+            <div class="progress-steps">
+                <div class="progress-step">
+                    <div class="step-icon" id="step1Icon">1</div>
+                    <div class="step-details">
+                        <div class="step-title">Fetching Repository</div>
+                        <div class="step-subtitle" id="step1Status">Connecting to server...</div>
+                    </div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-icon" id="step2Icon">2</div>
+                    <div class="step-details">
+                        <div class="step-title">Downloading Files</div>
+                        <div class="step-subtitle" id="step2Status">Waiting...</div>
+                    </div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-icon" id="step3Icon">3</div>
+                    <div class="step-details">
+                        <div class="step-title">Analyzing Code</div>
+                        <div class="step-subtitle" id="step3Status">Waiting...</div>
+                    </div>
+                </div>
+                <div class="progress-step">
+                    <div class="step-icon" id="step4Icon">4</div>
+                    <div class="step-details">
+                        <div class="step-title">Generating Report</div>
+                        <div class="step-subtitle" id="step4Status">Waiting...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>Fast Scanning</h3>
+                <p>Scans 1000+ files in seconds</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Public Repos</h3>
+                <p>Works with any public repository</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Detailed Reports</h3>
+                <p>Comprehensive vulnerability analysis</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Auto Updates</h3>
+                <p>Re-scan on new commits</p>
+            </div>
+        </div>
+
+        <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+    </div>
+
+    <script src="storage.js"></script>
+    <script src="main.js"></script>
+    <script src="url-scanner.js"></script>
+</body>
+</html>
