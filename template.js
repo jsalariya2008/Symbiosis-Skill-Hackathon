@@ -196,4 +196,35 @@ public class SignatureExample {
     static {
         Security.addProvider(new BouncyCastlePQCProvider());
     }
+     
+    public byte[] signData(byte[] data, PrivateKey privateKey) 
+            throws Exception {
+        // Quantum-safe: Dilithium signature
+        Signature signature = Signature.getInstance("Dilithium", "BCPQC");
+        signature.initSign(privateKey);
+        signature.update(data);
+        return signature.sign();
+    }
+}`,
+        changes: [
+            'Replaced ECDSA with Dilithium3',
+            'Added BouncyCastle PQC provider',
+            'Updated signature algorithm'
+        ],
+        improvements: [
+            'Quantum-resistant signatures',
+            'NIST standardized',
+            'Similar performance to ECDSA'
+        ],
+        notes: 'Dilithium3 recommended for most applications.',
+        libraries: ['Bouncy Castle PQC']
+    }
+};
+
+// Export to window
+if (typeof window !== 'undefined') {
+    window.CODE_TEMPLATES = CODE_TEMPLATES;
+}
+
+console.log('✅ Templates loaded successfully:', Object.keys(CODE_TEMPLATES).length, 'templates');
     
