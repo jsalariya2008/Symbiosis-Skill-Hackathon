@@ -99,7 +99,7 @@ class CryptoHandler:
             'Added KEM-based key encapsulation',
             'Integrated AES-GCM for data encryption'
         ],
-         improvements: [
+        improvements: [
             'Quantum-resistant security',
             'Authenticated encryption',
             'Faster key generation'
@@ -155,7 +155,7 @@ public:
         return OQS_KEM_keypair(kem, *public_key, *secret_key) == OQS_SUCCESS;
     }
 };`,
-         changes: [
+        changes: [
             'Replaced OpenSSL RSA with liboqs Kyber',
             'Changed from RSA to KEM approach',
             'Added proper memory management'
@@ -196,7 +196,7 @@ public class SignatureExample {
     static {
         Security.addProvider(new BouncyCastlePQCProvider());
     }
-     
+    
     public byte[] signData(byte[] data, PrivateKey privateKey) 
             throws Exception {
         // Quantum-safe: Dilithium signature
@@ -227,4 +227,3 @@ if (typeof window !== 'undefined') {
 }
 
 console.log('✅ Templates loaded successfully:', Object.keys(CODE_TEMPLATES).length, 'templates');
-    
